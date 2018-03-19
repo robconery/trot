@@ -38,7 +38,7 @@ defmodule Trot.LiveReload do
   defp check_reload({:ok, _rest}, conn), do: force_redirect(conn)
   defp check_reload([:ok | _rest], conn), do: force_redirect(conn)
   defp check_reload([], conn), do: conn
-  defp check_reload(_), do: conn
+  defp check_reload(_, conn), do: conn
   
   defp force_redirect(conn) do
     location = "/" <> Enum.join(conn.path_info, "/")
