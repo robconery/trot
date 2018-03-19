@@ -16,9 +16,11 @@ defmodule Trot.Template.Slim do
 
   @doc false
   def full_compile(file) do
-    file
-    |> File.read!
-    |> Slime.Renderer.precompile
-    |> EEx.compile_string
+    quote do
+      unquote(file)
+      |> File.read!
+      |> Slime.Renderer.precompile(assigns: var!(assigns))
+      |> EEx.compile_string
+    end
   end
 end
